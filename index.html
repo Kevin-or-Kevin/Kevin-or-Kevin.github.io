@@ -10,4 +10,75 @@
   </label>
 <button id="acceptButton">Accept</button>
 </body>
+
+
+<body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classic Date Picker Page</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    header {
+      background-color: #fff;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    main {
+      padding: 40px;
+      text-align: center;
+    }
+    input[type="date"] {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Welcome</h1>
+  <p>Select a Date:</p>
+  <input type="date" id="datePicker">
+</header>
+
+<main id="mainContent">
+  <p>Please select a date to see the content.</p>
+</main>
+
+<script>
+  // Example data mapped by date in YYYY-MM-DD format
+  const contentData = {
+    '2025-03-13': 'Today is March 13, 2025. Here is some interesting content for this day.',
+    '2025-03-14': 'On March 14, 2025, we celebrate Pi Day! Enjoy some math facts and puzzles.',
+    // Add more dates and content as needed
+  };
+
+  // Reference to the date input and main content area
+  const datePicker = document.getElementById('datePicker');
+  const mainContent = document.getElementById('mainContent');
+
+  // Event listener to update content when date changes
+  datePicker.addEventListener('change', function() {
+    const selectedDate = datePicker.value;
+    if (contentData[selectedDate]) {
+      mainContent.innerHTML = `<p>${contentData[selectedDate]}</p>`;
+    } else {
+      mainContent.innerHTML = `<p>No content available for ${selectedDate}. Try another date.</p>`;
+    }
+  });
+</script>
+
+
+
+</body>
 </html>
