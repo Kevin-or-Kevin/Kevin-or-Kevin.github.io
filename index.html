@@ -12,7 +12,6 @@
 </body>
 
 
-<body>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -41,6 +40,11 @@
       border: 1px solid #ccc;
       border-radius: 4px;
     }
+    .content-image {
+      max-width: 100%;
+      height: auto;
+      margin: 20px 0;
+    }
   </style>
 </head>
 <body>
@@ -56,36 +60,33 @@
 </main>
 
 <script>
-  // Example data mapped by date in YYYY-MM-DD format
+  // Content data using standard date format (YYYY-MM-DD)
   const contentData = {
-    '03-05-1500': 'On May 13, 1500. Here is some interesting content for this day.'
- <img src="images/Portrait_of_Niccolò_Machiavelli_by_Santi_di_Tito.jpg" alt="Niccolò di Bernardo dei Machiavelli">
-
+    '1500-05-03': `
+      <h2>May 03, 1500</h2>
+      <p>On May 03, 1500. Here is some interesting content for this day.</p>
+      <img src="images/Portrait_of_Niccolò_Machiavelli_by_Santi_di_Tito.jpg" alt="Niccolò di Bernardo dei Machiavelli" class="content-image">
     `,
-    '15-05-1800': 'On May 15, 1800, .' 
-<img src="images/David_-_Napoleon_crossing_the_Alps_-_Malmaison2.jpg" alt="Napoleon">
-
-    `,
-    // Add more dates and content as 
+    '1800-05-15': `
+      <h2>May 15, 1800</h2>
+      <p>On May 15, 1800. Here is some interesting content for this day.</p>
+      <img src="images/David_-_Napoleon_crossing_the_Alps_-_Malmaison2.jpg" alt="Napoleon" class="content-image">
+    `
   };
 
-  // Reference to the date input and main content area
   const datePicker = document.getElementById('datePicker');
   const mainContent = document.getElementById('mainContent');
 
-  // Event listener to update content when date changes
   datePicker.addEventListener('change', function() {
     const selectedDate = datePicker.value;
-console.log("Selected date:", selectedDate); // Debug: see what date is returned
+    console.log("Selected date:", selectedDate); // Debug output
     if (contentData[selectedDate]) {
-      mainContent.innerHTML = `<p>${contentData[selectedDate]}</p>`;
+      mainContent.innerHTML = contentData[selectedDate];
     } else {
       mainContent.innerHTML = `<p>No content available for ${selectedDate}. Try another date.</p>`;
     }
   });
 </script>
-
-
 
 </body>
 </html>
