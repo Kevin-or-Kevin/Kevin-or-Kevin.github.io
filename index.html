@@ -76,6 +76,7 @@
   // Event listener to update content when date changes
   datePicker.addEventListener('change', function() {
     const selectedDate = datePicker.value;
+console.log("Selected date:", selectedDate); // Debug: see what date is returned
     if (contentData[selectedDate]) {
       mainContent.innerHTML = `<p>${contentData[selectedDate]}</p>`;
     } else {
