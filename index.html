@@ -60,14 +60,18 @@
 </main>
 
 <script>
-  // Content data using standard date format
+  // Content data using standard date format (YYYY-MM-DD)
   const contentData = {
+<<<<<<< HEAD
     '03-05-1500': `
+=======
+    '1500-05-03': `
+>>>>>>> parent of a14d3fc (Update index.html)
       <h2>May 03, 1500</h2>
       <p>On May 03, 1500. Here is some interesting content for this day.</p>
       <img src="images/Portrait_of_Niccolò_Machiavelli_by_Santi_di_Tito.jpg" alt="Niccolò di Bernardo dei Machiavelli" class="content-image">
     `,
-    '15-05-1800': `
+    '1800-05-15': `
       <h2>May 15, 1800</h2>
       <p>On May 15, 1800. Here is some interesting content for this day.</p>
       <img src="images/David_-_Napoleon_crossing_the_Alps_-_Malmaison2.jpg" alt="Napoleon" class="content-image">
@@ -77,17 +81,9 @@
   const datePicker = document.getElementById('datePicker');
   const mainContent = document.getElementById('mainContent');
 
-//New thing addded, to convert date string from yy-mm--ddd to dd--mm--yyy
-function convertToDDMMYYYY(isoDate) {
-    const [year, month, day] = isoDate.split('-');
-    return `${day}-${month}-${year}`;
-
-
   datePicker.addEventListener('change', function() {
-    const selectedDateIso = datePicker.value; // e.g., "1500-05-03"
-    const selectedDate = convertToDDMMYYYY(selectedDateIso); // converts to "03-05-1500"
-    console.log("Converted Selected date:", selectedDate);
-
+    const selectedDate = datePicker.value;
+    console.log("Selected date:", selectedDate); // Debug output
     if (contentData[selectedDate]) {
       mainContent.innerHTML = contentData[selectedDate];
     } else {
