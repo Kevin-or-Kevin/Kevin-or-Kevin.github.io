@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <titleFront face of MyFirst</title>
+  <style>
+    /* === Variables & Reset === */
+    :root {
+      --bg:        #1A1A1B;
+      --card-bg:   #29292B;
+      --nav-bg:    #343536;
+      --text:      #D7DADC;
+      --text-light:#838487;
+      --border:    #343536;
+      --accent:    #0079D3; /* MyFirst try accent  */
+    }
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* === HEADER === */
+    header {
+      background: var(--nav-bg);
+      height: 56px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+    header .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--text);
+      margin-right: 24px;
+    }
+    header .search {
+      flex: 1;
+    }
+    header .search input {
+      width: 100%;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 4px;
+      background: #202226;
+      color: var(--text);
+    }
+    header .buttons button {
+      margin-left: 12px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 10px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    /* === PAGE LAYOUT === */
+    .page {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    /* === LEFT SIDEBAR === */
+    nav.sidebar {
+      width: 240px;
+      background: var(--nav-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 16px;
+    }
+    nav.sidebar h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    nav.sidebar ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    nav.sidebar ul li {
+      padding: 8px 0;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    nav.sidebar ul li:hover {
+      color: var(--accent);
+    }
+    nav.sidebar ul li.active {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* === MAIN CONTENT === */
+    main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+    }
+
+    /* — Trending  Row — */
+    .trending {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .trending .card {
+      background: var(--card-bg);
+      flex: 1;
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .trending .card img {
+      width: 100%;
+      display: block;
+    }
+    .trending .card .info {
+      padding: 12px;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .trending .card .info h3 {
+      margin-bottom: 6px;
+      font-size: 16px;
+    }
+    .trending .card .info p {
+      color: var(--text-light);
+      font-size: 13px;
+    }
+
+    /* — Filter Bar — */
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .filters select,
+    .filters button {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 6px 10px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* — Posts List — */
+    .posts .post {
+      display: flex;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .posts .post .thumbnail {
+      width: 120px;
+      background: #202226;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .posts .post .thumbnail img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    .posts .post .content {
+      padding: 12px;
+      flex: 1;
+    }
+    .posts .post .content .subreddit {
+      color: var(--accent);
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+    .posts .post .content .title {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+
+    /* === RIGHT SIDEBAR === */
+    aside.rightbar {
+      width: 300px;
+      background: var(--nav-bg);
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
+      padding: 16px;
+    }
+    aside.rightbar h2 {
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    aside.rightbar ul {
+      list-style: none;
+    }
+    aside.rightbar ul li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+    aside.rightbar ul li img {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    aside.rightbar ul li .name {
+      font-size: 14px;
+      color: var(--text);
+    }
+    aside.rightbar ul li .count {
+      margin-left: auto;
+      font-size: 12px;
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo">MyFirst</div>
+    <div class="search">
+      <input type="text" placeholder="Search MyFirst">
+    </div>
+    <div class="buttons">
+      
+      <button>Funny button</button>
+    </div>
+  </header>
+
+  <!-- MAIN PAGE: SIDEBAR | CONTENT | RIGHTBAR -->
+  <div class="page">
+
+    <!-- LEFT NAVIGATION -->
+    <nav class="sidebar">
+      <h2>Home</h2>
+      <ul>
+        <li class="active">Home</li>
+        <li>Important</li>
+      </ul>
+
+      <h2>Topics</h2>
+      <ul>
+        <li> Computer Science ()</li>
+        <li>Chess</li>
+        <li>Q&As</li>
+        <li>Technology</li>
+        <li>Philosophy</li>
+        
+      </ul>
+
+      <h2>Resources</h2>
+      <ul>
+        <li>About MyFirst</li>
+        <li>Whatever</li>
+        <li>Bibliography</li>
+        <li>Help</li>
+      </ul>
+    </nav>
+
+    <!-- CENTER FEED -->
+    <main>
+      <!-- Trending Cards -->
+      <div class="trending">
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e2/Portrait_of_Niccol%C3%B2_Machiavelli_by_Santi_di_Tito.jpg" alt="Working on">
+          <div class="info">
+            <h3>Making notes</h3>
+            <p>In order to organize</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Bonaparte_David_Charlottenburg.jpg" alt=" advances">
+          <div class="info">
+            <h3>Conqueror</h3>
+            <p> France</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://" alt=" traded">
+          <div class="info">
+            <h3> Future</h3>
+            <p>Cannounce...</p>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://" alt=" news">
+          <div class="info">
+            <h3>I guess...</h3>
+            <p>3 Doors .</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filters">
+        <select>
+          <option>Best</option>
+          <option>Hot</option>
+          <option>New</option>
+          <option>Top</option>
+        </select>
+        <button>Mexico ▼</button>
+       <!-- <button>▢</button> --> 
+      </div>
+
+      <!-- Posts -->
+      <div class="posts">
+        <div class="post">
+          <div class="thumbnail">
+            <img src="https://" alt="">
+          </div>
+          <div class="content">
+            <div class="subMyFirst">host/main • ? hr. ago</div>
+            <div class="title">Easier than expected to be honest. No guides.</div>
+          </div>
+        </div>
+        <!-- repeat .post as needed -->
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR -->
+    <aside class="rightbar">
+      <h2>Important sidenotes</h2>
+      <ul>
+        <li>
+          <img src="https://" alt="">
+          <span class="name">r/NoStupidQuestions</span>
+          <span class="count">6.1M</span>
+        </li>
+        <li>
+          <img src="https://" alt="">
+          <span class="name">test</span>
+          <span class="count">Number</span>
+        </li>
+        <li>
+          <img src="https://" alt="">
+          <span class="name">Fitness</span>
+          <span class="count">07.05.2025</span>
+        </li>
+        <li>
+          <img src="https://" alt="">
+          <span class="name">DnD</span>
+          <span class="count">1</span>
+        </li>
+        <li>
+          <img src="https://" alt="">
+          <span class="name">videos</span>
+          <span class="count">2</span>
+        </li>
+      </ul>
+    </aside>
+
+  </div>
+
+  <!-- (Optional) Tiny JS for interactive toggles -->
+  <script>
+    document.querySelectorAll('.sidebar ul li').forEach(li => {
+      li.addEventListener('click', () => {
+        document.querySelector('.sidebar li.active')?.classList.remove('active');
+        li.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
